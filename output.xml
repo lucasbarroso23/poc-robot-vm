@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.6 on win32)" generated="20220527 13:27:22.906" rpa="false" schemaversion="3">
+<suite id="s1" name="Vcenter Test" source="C:\Users\lucas_barroso\Desktop\POCRobotVMware\vmware_poc\vcenter_test.robot">
+<kw name="Connect to Vsphere NewSession to host host51.br.rdlabs.hpecorp.net with user admin2@vsphere.local and password HPE@vmaas2" library="VsphereRobot" type="SETUP" sourcename="Connect to Vsphere ${session_name} to host ${hostname} with user ${username} and password ${password}">
+<msg timestamp="20220527 13:27:23.502" level="TRACE">Arguments: [ 'NewSession' | 'host51.br.rdlabs.hpecorp.net' | 'admin2@vsphere.local' | 'HPE@vmaas2' ]</msg>
+<msg timestamp="20220527 13:27:23.514" level="DEBUG">opId: b5d4b6f9-1ec3-4d76-86fb-003f36f06898 invoke: interface_id: com.vmware.cis.session, operation_name: create</msg>
+<msg timestamp="20220527 13:27:23.514" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:23.518" level="DEBUG">Starting new HTTPS connection (1): host51.br.rdlabs.hpecorp.net:443</msg>
+<msg timestamp="20220527 13:27:25.353" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:25.417" level="INFO">User $admin2@vsphere.local connected in session $NewSession</msg>
+<msg timestamp="20220527 13:27:25.417" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:27:23.502" endtime="20220527 13:27:25.417"/>
+</kw>
+<test id="s1-t1" name="Test Create A VM From Template And Wait For The IP Address" line="17">
+<kw name="When Get Template ID Set as Suite Variable" library="keywords">
+<msg timestamp="20220527 13:27:25.418" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Template ${TEMPLATE_REF} ID" library="VsphereRobot" sourcename="Get Template ${name} ID">
+<var>${id}</var>
+<doc>Uses the template name to get the template ID
+the template needs to be in the library item
+@return: the template id.</doc>
+<msg timestamp="20220527 13:27:25.418" level="TRACE">Arguments: [ 'secc3_sles15sp3_tpm_1' ]</msg>
+<msg timestamp="20220527 13:27:25.420" level="DEBUG">opId: d82b0994-79ea-47ab-a324-df9449888380 invoke: interface_id: com.vmware.content.library.item, operation_name: find</msg>
+<msg timestamp="20220527 13:27:25.420" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:25.421" level="DEBUG">Starting new HTTPS connection (1): host51.br.rdlabs.hpecorp.net:443</msg>
+<msg timestamp="20220527 13:27:27.383" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:27.384" level="INFO">Template ID: $3dec63a3-48c4-48af-830a-0ddcce187350</msg>
+<msg timestamp="20220527 13:27:27.384" level="TRACE">Return: '3dec63a3-48c4-48af-830a-0ddcce187350'</msg>
+<msg timestamp="20220527 13:27:27.384" level="INFO">${id} = 3dec63a3-48c4-48af-830a-0ddcce187350</msg>
+<status status="PASS" starttime="20220527 13:27:25.418" endtime="20220527 13:27:27.384"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>$TEMPLATE_ID</arg>
+<arg>${id}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220527 13:27:27.384" level="TRACE">Arguments: [ '$TEMPLATE_ID' | '${id}' ]</msg>
+<msg timestamp="20220527 13:27:27.384" level="INFO">${TEMPLATE_ID} = 3dec63a3-48c4-48af-830a-0ddcce187350</msg>
+<msg timestamp="20220527 13:27:27.385" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:27:27.384" endtime="20220527 13:27:27.385"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>len('${id}')</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20220527 13:27:27.385" level="TRACE">Arguments: [ "len('3dec63a3-48c4-48af-830a-0ddcce187350')" ]</msg>
+<msg timestamp="20220527 13:27:27.385" level="INFO">Length is 43</msg>
+<msg timestamp="20220527 13:27:27.385" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:27:27.385" endtime="20220527 13:27:27.385"/>
+</kw>
+<msg timestamp="20220527 13:27:27.385" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:27:25.418" endtime="20220527 13:27:27.385"/>
+</kw>
+<kw name="Then Create VM ${VM_NAME} From Template ID ${TEMPLATE_ID} And Return IP" library="VsphereRobot" sourcename="Create VM ${vm_name} From Template ID ${template_id} And Return IP">
+<doc>Create a VM from a template in the library item</doc>
+<msg timestamp="20220527 13:27:27.386" level="TRACE">Arguments: [ 'poc_vm_robot_template' | '3dec63a3-48c4-48af-830a-0ddcce187350' ]</msg>
+<msg timestamp="20220527 13:27:27.386" level="DEBUG">opId: 3f698dc9-a067-4ac6-a3bd-038693337481 invoke: interface_id: com.vmware.vcenter.datacenter, operation_name: list</msg>
+<msg timestamp="20220527 13:27:27.386" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:28.000" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:28.001" level="DEBUG">opId: 86f0b80c-7293-44ee-94aa-2e47b6468838 invoke: interface_id: com.vmware.vcenter.folder, operation_name: list</msg>
+<msg timestamp="20220527 13:27:28.001" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:28.406" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:28.407" level="DEBUG">opId: 8b5478b9-fc10-4493-82ac-b2ed7cf10daf invoke: interface_id: com.vmware.vcenter.datacenter, operation_name: list</msg>
+<msg timestamp="20220527 13:27:28.407" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:28.810" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:28.811" level="DEBUG">opId: f873ca31-dae7-4c72-8d24-d2c46afe3901 invoke: interface_id: com.vmware.vcenter.resource_pool, operation_name: list</msg>
+<msg timestamp="20220527 13:27:28.811" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:27:29.234" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:27:29.236" level="DEBUG">opId: 432cefb8-4375-4ccd-aadb-08bdfc18d011 invoke: interface_id: com.vmware.vcenter.vm_template.library_items, operation_name: deploy</msg>
+<msg timestamp="20220527 13:27:29.236" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:02.252" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:02.254" level="DEBUG">opId: 959060c5-62c9-46a5-ad7d-301752a5f926 invoke: interface_id: com.vmware.vcenter.VM, operation_name: list</msg>
+<msg timestamp="20220527 13:28:02.254" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:02.666" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:02.667" level="INFO">VM info ${vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<msg timestamp="20220527 13:28:03.683" level="DEBUG">opId: 7fe9dccb-f73b-4e14-90ff-e6e5ff4b447b invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:03.684" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:04.198" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:05.213" level="DEBUG">opId: 71705bcc-09d7-4fa9-9517-46c727b160f3 invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:05.213" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:05.712" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:06.718" level="DEBUG">opId: f7c78bea-9945-4b42-ade6-0e1192cabf85 invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:06.718" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:07.229" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:08.230" level="DEBUG">opId: faf16e77-6c89-4e53-a446-4fbc06f8bab8 invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:08.230" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:08.733" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:09.736" level="DEBUG">opId: fd911bc6-9150-46f3-99b8-092d9acdcb07 invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:09.736" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:10.234" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:11.244" level="DEBUG">opId: 47c18708-2d6a-49d6-aee8-bb6dd7f15ff0 invoke: interface_id: com.vmware.vcenter.vm.guest.power, operation_name: get</msg>
+<msg timestamp="20220527 13:28:11.244" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:11.748" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:12.756" level="DEBUG">opId: 5548f3d6-30b0-475a-abe3-3dc844d458b8 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:12.756" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:13.267" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:14.268" level="DEBUG">opId: 1675c34d-6589-4b2b-8f97-74999e377756 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:14.268" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:14.766" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:15.777" level="DEBUG">opId: bd5200eb-dab4-439d-96e4-c4b82a03fe32 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:15.777" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:16.276" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:17.291" level="DEBUG">opId: e8135e35-d132-4505-8c9e-2b2ed3080c6b invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:17.291" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:17.789" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:18.797" level="DEBUG">opId: 7fee01c2-fd34-48a1-9c61-ff02318a7290 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:18.797" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:19.303" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:20.311" level="DEBUG">opId: f19de39c-6cf0-4f94-9f13-f79654f24264 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:20.311" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:20.812" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:21.824" level="DEBUG">opId: 223f0c57-2aaf-431d-95e9-25eb59d5572a invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:21.824" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:22.323" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:23.339" level="DEBUG">opId: ace0c852-cc7c-4b64-bf0d-fe09268c9c9c invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:23.339" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:23.837" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:24.842" level="DEBUG">opId: 53ae2c8b-325d-4517-9b64-8479a657ded6 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:24.842" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:25.341" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:26.344" level="DEBUG">opId: ac9b7737-7d86-42c8-8eb2-42f3bb2a9db0 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:26.344" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:26.845" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:27.847" level="DEBUG">opId: 7f39e2e9-3dc1-456f-9da2-e56a9d3e2ee0 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:27.847" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:28.348" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:29.361" level="DEBUG">opId: b90abb88-5959-49b7-820a-3bee267f20b8 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:29.361" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:29.860" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:30.867" level="DEBUG">opId: 5b53c8c0-3d97-484f-b8ce-8dd1c8bd9350 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:30.867" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:31.370" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:32.377" level="DEBUG">opId: 0121d52e-c93f-4872-b1cd-17c478747a67 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:32.377" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:32.877" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:33.880" level="DEBUG">opId: 9f58d9c9-dd05-4f67-b7b8-9b4f55ae05cd invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:33.880" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:34.382" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:35.385" level="DEBUG">opId: 3731f4c4-dcbf-45e8-8d3d-f4cd742a5511 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:35.385" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:35.891" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:36.906" level="DEBUG">opId: 764a5a00-b0a1-4888-bba0-41f2969c7c45 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:36.906" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:37.406" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:38.419" level="DEBUG">opId: 45008864-6a38-499c-9f20-120cdad06c13 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:38.419" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:39.004" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:40.010" level="DEBUG">opId: 7b349994-8594-451d-b426-4290c4a32f2d invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:40.010" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:40.518" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:41.531" level="DEBUG">opId: d2f956dd-a1ff-4c1e-88b5-2f03750e128b invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:41.532" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:42.204" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:43.210" level="DEBUG">opId: d950f8d2-623c-4b54-9639-4a21a68fc2a3 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:43.210" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:43.710" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:44.720" level="DEBUG">opId: 69dfab58-f3b3-49e0-bc11-88b6f8393a95 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:44.720" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:45.224" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:46.240" level="DEBUG">opId: 634fc757-4798-4941-8ae9-86d5403e18e7 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:46.240" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:46.739" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:47.749" level="DEBUG">opId: 9477838d-2a5a-4ff9-8abb-c821d2a0347a invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:47.750" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:48.249" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:49.260" level="DEBUG">opId: 9924a7e1-780b-4b3d-bedb-45ec8a2c8439 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:49.260" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:49.760" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:50.775" level="DEBUG">opId: 2c2bbdf1-058d-49d6-8509-3bee8a421caf invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:50.775" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:51.275" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:52.284" level="DEBUG">opId: 769d2bf0-c40e-4169-94e4-fd97f28f1976 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:52.284" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:52.782" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:53.791" level="DEBUG">opId: da500d74-5adb-4b42-ae24-7fc64e9cb2e2 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:53.791" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:54.290" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:55.294" level="DEBUG">opId: 92b2b36e-00ff-49ba-8d5a-71ca1a44ae72 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:55.295" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:55.819" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:56.833" level="DEBUG">opId: 32d9042e-918c-4a32-940c-b23e7480827d invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:56.834" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:57.333" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:58.342" level="DEBUG">opId: f964b429-77f0-409b-be7c-fcf5c9d8d67d invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:58.342" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:28:58.841" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:28:59.847" level="DEBUG">opId: 5d5ad677-461c-43c4-b4fd-441b72f1cdec invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:28:59.847" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:00.349" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:01.359" level="DEBUG">opId: b3b73d75-117d-424e-93b6-57698c1082d7 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:29:01.360" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:01.858" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:01.858" level="DEBUG">opId: f73b0e22-df5f-46e4-9b81-551a19165ae0 invoke: interface_id: com.vmware.vcenter.vm.power, operation_name: get</msg>
+<msg timestamp="20220527 13:29:01.859" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:02.363" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:02.364" level="INFO">VM Power Status ${state : POWERED_ON, clean_power_off : None}</msg>
+<msg timestamp="20220527 13:29:03.366" level="DEBUG">opId: 969bc4fa-1456-499f-9c54-c230465423a8 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:29:03.366" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:03.863" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:03.864" level="DEBUG">opId: cadb8d7e-bad9-49f0-af66-bba34bae2fcd invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:29:03.864" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:04.363" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:04.364" level="INFO">VM IP: $10.1.3.121</msg>
+<msg timestamp="20220527 13:29:04.364" level="TRACE">Return: '10.1.3.121'</msg>
+<status status="PASS" starttime="20220527 13:27:27.386" endtime="20220527 13:29:04.364"/>
+</kw>
+<doc>Tries to create a VM from a template inside
+the library item in the Vcenter using the template ID
+and create the VM then power ON the vm and waits
+the VmTools status to be running so it can get the VM IP address</doc>
+<status status="PASS" starttime="20220527 13:27:25.418" endtime="20220527 13:29:04.365"/>
+</test>
+<test id="s1-t2" name="Test Install Platform Agent in VM" line="25">
+<kw name="Skip" library="BuiltIn">
+<arg>not implemented</arg>
+<doc>Skips the rest of the current test.</doc>
+<msg timestamp="20220527 13:29:04.367" level="TRACE">Arguments: [ 'not implemented' ]</msg>
+<msg timestamp="20220527 13:29:04.368" level="SKIP">not implemented</msg>
+<msg timestamp="20220527 13:29:04.368" level="DEBUG">Traceback (most recent call last):
+  None
+robot.api.exceptions.SkipExecution: not implemented</msg>
+<status status="SKIP" starttime="20220527 13:29:04.367" endtime="20220527 13:29:04.368"/>
+</kw>
+<doc>Tries to install the Platform Agent on the VM
+and check if is properly installed</doc>
+<tag>not implemented</tag>
+<status status="SKIP" starttime="20220527 13:29:04.366" endtime="20220527 13:29:04.368">not implemented</status>
+</test>
+<test id="s1-t3" name="Test Perform Attestation And Get Result" line="31">
+<kw name="Skip" library="BuiltIn">
+<arg>not implemented</arg>
+<doc>Skips the rest of the current test.</doc>
+<msg timestamp="20220527 13:29:04.371" level="TRACE">Arguments: [ 'not implemented' ]</msg>
+<msg timestamp="20220527 13:29:04.371" level="SKIP">not implemented</msg>
+<msg timestamp="20220527 13:29:04.371" level="DEBUG">Traceback (most recent call last):
+  None
+robot.api.exceptions.SkipExecution: not implemented</msg>
+<status status="SKIP" starttime="20220527 13:29:04.371" endtime="20220527 13:29:04.371"/>
+</kw>
+<doc>Tries to perform attestation and get the result</doc>
+<tag>not implemented</tag>
+<status status="SKIP" starttime="20220527 13:29:04.370" endtime="20220527 13:29:04.371">not implemented</status>
+</test>
+<test id="s1-t4" name="Test Get a VM by Name and Log the VM Info" line="36">
+<kw name="When Get VM reference and Set as Suite Variable" library="keywords">
+<msg timestamp="20220527 13:29:04.374" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Vm ${VM_NAME} Info" library="VsphereRobot" sourcename="Get VM ${vm_name} Info">
+<var>${VM_REF}</var>
+<doc>Get a single VM</doc>
+<msg timestamp="20220527 13:29:04.374" level="TRACE">Arguments: [ 'poc_vm_robot_template' ]</msg>
+<msg timestamp="20220527 13:29:04.375" level="DEBUG">opId: c6287a2d-be9a-40f1-983f-d5838c15ba59 invoke: interface_id: com.vmware.vcenter.VM, operation_name: list</msg>
+<msg timestamp="20220527 13:29:04.375" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:04.775" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:04.776" level="INFO">VM info ${vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<msg timestamp="20220527 13:29:04.776" level="TRACE">Return: Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192)</msg>
+<msg timestamp="20220527 13:29:04.777" level="INFO">${VM_REF} = {vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<status status="PASS" starttime="20220527 13:29:04.374" endtime="20220527 13:29:04.777"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>$VM</arg>
+<arg>${VM_REF}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220527 13:29:04.777" level="TRACE">Arguments: [ '$VM' | '${VM_REF}' ]</msg>
+<msg timestamp="20220527 13:29:04.777" level="INFO">${VM} = {vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<msg timestamp="20220527 13:29:04.777" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:04.777" endtime="20220527 13:29:04.777"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>len('${VM}')</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20220527 13:29:04.778" level="TRACE">Arguments: [ "len('{vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}')" ]</msg>
+<msg timestamp="20220527 13:29:04.778" level="INFO">Length is 116</msg>
+<msg timestamp="20220527 13:29:04.778" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:04.777" endtime="20220527 13:29:04.778"/>
+</kw>
+<msg timestamp="20220527 13:29:04.778" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:04.374" endtime="20220527 13:29:04.778"/>
+</kw>
+<kw name="Then Get VM ${VM} BiosUUID" library="VsphereRobot" sourcename="Get VM ${vm} BiosUUID">
+<doc>Get VM instance bios_uuid</doc>
+<msg timestamp="20220527 13:29:04.779" level="TRACE">Arguments: [ Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192) ]</msg>
+<msg timestamp="20220527 13:29:04.779" level="DEBUG">opId: 4df319c6-048b-4743-81a7-8e8cd644e578 invoke: interface_id: com.vmware.vcenter.VM, operation_name: get</msg>
+<msg timestamp="20220527 13:29:04.780" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:05.183" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:05.193" level="INFO">VM identity ${name : poc_vm_robot_template, bios_uuid : 423a5596-187f-72da-0a93-4ba2c1173139, instance_uuid : 503a25bf-bc48-bd1c-ab56-b200acb66861}</msg>
+<msg timestamp="20220527 13:29:05.193" level="TRACE">Return: '423a5596-187f-72da-0a93-4ba2c1173139'</msg>
+<status status="PASS" starttime="20220527 13:29:04.779" endtime="20220527 13:29:05.193"/>
+</kw>
+<kw name="And Get VM ${VM} IP" library="VsphereRobot" sourcename="Get VM ${vm} IP">
+<doc>Get the identity info from a VM
+@return: the vm ip address.</doc>
+<msg timestamp="20220527 13:29:05.195" level="TRACE">Arguments: [ Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192) ]</msg>
+<msg timestamp="20220527 13:29:05.195" level="DEBUG">opId: d6c792ac-ede8-4d4c-ba5d-f690762a9504 invoke: interface_id: com.vmware.vcenter.vm.power, operation_name: get</msg>
+<msg timestamp="20220527 13:29:05.195" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:05.694" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:05.695" level="INFO">VM Power Status ${state : POWERED_ON, clean_power_off : None}</msg>
+<msg timestamp="20220527 13:29:06.702" level="DEBUG">opId: 36c541a3-9a01-4f20-9397-736ffac2a4e9 invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:29:06.702" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:07.201" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:07.202" level="DEBUG">opId: cacb59c5-096d-471c-83ba-70fb67648ddd invoke: interface_id: com.vmware.vcenter.vm.guest.identity, operation_name: get</msg>
+<msg timestamp="20220527 13:29:07.202" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:07.772" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:07.772" level="INFO">VM IP: $10.1.3.121</msg>
+<msg timestamp="20220527 13:29:07.772" level="TRACE">Return: '10.1.3.121'</msg>
+<status status="PASS" starttime="20220527 13:29:05.195" endtime="20220527 13:29:07.772"/>
+</kw>
+<kw name="And Get VM ${VM} Power Status" library="VsphereRobot" sourcename="Get VM ${vm} Power Status">
+<doc>Get the VM Power status
+@return: the vm Power status.</doc>
+<msg timestamp="20220527 13:29:07.773" level="TRACE">Arguments: [ Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192) ]</msg>
+<msg timestamp="20220527 13:29:07.773" level="DEBUG">opId: 9b73cce3-0d9f-4267-ab92-d8dcd433b3ce invoke: interface_id: com.vmware.vcenter.vm.power, operation_name: get</msg>
+<msg timestamp="20220527 13:29:07.773" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:08.288" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:08.288" level="INFO">VM Power Status ${state : POWERED_ON, clean_power_off : None}</msg>
+<msg timestamp="20220527 13:29:08.289" level="TRACE">Return: Info(state=State(string='POWERED_ON'), clean_power_off=None)</msg>
+<status status="PASS" starttime="20220527 13:29:07.773" endtime="20220527 13:29:08.289"/>
+</kw>
+<doc>Tries to get the vm reference using the vm name
+checks if the the VM reference exists
+then we use the vm reference to get the vm bios uuid,
+the vm ip address and the power state</doc>
+<status status="PASS" starttime="20220527 13:29:04.372" endtime="20220527 13:29:08.289"/>
+</test>
+<test id="s1-t5" name="Test Delete VM" line="46">
+<kw name="When Get VM reference and Set as Suite Variable" library="keywords">
+<msg timestamp="20220527 13:29:08.292" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Vm ${VM_NAME} Info" library="VsphereRobot" sourcename="Get VM ${vm_name} Info">
+<var>${VM_REF}</var>
+<doc>Get a single VM</doc>
+<msg timestamp="20220527 13:29:08.292" level="TRACE">Arguments: [ 'poc_vm_robot_template' ]</msg>
+<msg timestamp="20220527 13:29:08.292" level="DEBUG">opId: 63656107-6efa-4fd5-bdc5-2ee3e794a013 invoke: interface_id: com.vmware.vcenter.VM, operation_name: list</msg>
+<msg timestamp="20220527 13:29:08.293" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:08.690" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:08.691" level="INFO">VM info ${vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<msg timestamp="20220527 13:29:08.691" level="TRACE">Return: Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192)</msg>
+<msg timestamp="20220527 13:29:08.691" level="INFO">${VM_REF} = {vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<status status="PASS" starttime="20220527 13:29:08.292" endtime="20220527 13:29:08.691"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>$VM</arg>
+<arg>${VM_REF}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220527 13:29:08.691" level="TRACE">Arguments: [ '$VM' | '${VM_REF}' ]</msg>
+<msg timestamp="20220527 13:29:08.691" level="INFO">${VM} = {vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}</msg>
+<msg timestamp="20220527 13:29:08.691" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:08.691" endtime="20220527 13:29:08.691"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>len('${VM}')</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20220527 13:29:08.692" level="TRACE">Arguments: [ "len('{vm : vm-2108, name : poc_vm_robot_template, power_state : POWERED_ON, cpu_count : 4, memory_size_mib : 8192}')" ]</msg>
+<msg timestamp="20220527 13:29:08.692" level="INFO">Length is 116</msg>
+<msg timestamp="20220527 13:29:08.692" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:08.691" endtime="20220527 13:29:08.692"/>
+</kw>
+<msg timestamp="20220527 13:29:08.692" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:08.292" endtime="20220527 13:29:08.692"/>
+</kw>
+<kw name="Then Delete VM ${VM}" library="VsphereRobot" sourcename="Delete VM ${vm}">
+<doc>Check the VM Power status and if is Power OFF
+deletes the VM</doc>
+<msg timestamp="20220527 13:29:08.693" level="TRACE">Arguments: [ Summary(vm='vm-2108', name='poc_vm_robot_template', power_state=State(string='POWERED_ON'), cpu_count=4, memory_size_mib=8192) ]</msg>
+<msg timestamp="20220527 13:29:08.693" level="DEBUG">opId: 009b27be-51d9-4fe6-ba2a-3a40ad8e5575 invoke: interface_id: com.vmware.vcenter.vm.power, operation_name: get</msg>
+<msg timestamp="20220527 13:29:08.694" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:09.193" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:09.194" level="INFO">VM Power Status ${state : POWERED_ON, clean_power_off : None}</msg>
+<msg timestamp="20220527 13:29:09.194" level="DEBUG">opId: d529ff17-c81b-44d1-b771-8d1008591c58 invoke: interface_id: com.vmware.vcenter.vm.power, operation_name: stop</msg>
+<msg timestamp="20220527 13:29:09.194" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:10.093" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:10.094" level="DEBUG">opId: f18024f5-ebc8-47d9-b4d2-e99640326270 invoke: interface_id: com.vmware.vcenter.VM, operation_name: delete</msg>
+<msg timestamp="20220527 13:29:10.094" level="DEBUG">_do_request: request invoke</msg>
+<msg timestamp="20220527 13:29:10.794" level="DEBUG">https://host51.br.rdlabs.hpecorp.net:443 "POST /api HTTP/1.1" 200 None</msg>
+<msg timestamp="20220527 13:29:10.794" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220527 13:29:08.693" endtime="20220527 13:29:10.794"/>
+</kw>
+<doc>Tries to delete a VM
+if the VM is powered ON will Power OFF
+before deleting</doc>
+<status status="PASS" starttime="20220527 13:29:08.291" endtime="20220527 13:29:10.795"/>
+</test>
+<doc>Test app to use the pysphere functions
+The idea is connect to a vcenter and
+manipulate some VM using this lib
+from this we add the funcionalities that
+we need</doc>
+<status status="PASS" starttime="20220527 13:27:22.908" endtime="20220527 13:29:10.796"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="2">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="0" skip="2">not implemented</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="2" id="s1" name="Vcenter Test">Vcenter Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

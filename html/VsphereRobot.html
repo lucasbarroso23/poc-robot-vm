@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>VsphereRobot API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>VsphereRobot</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import time
+import requests
+from robot.api.deco import keyword
+from robot.api import logger
+
+
+from vmware.vapi.vsphere.client import create_vsphere_client
+from com.vmware.vcenter_client import VM
+from com.vmware.vcenter.vm_client import Power
+from com.vmware.vcenter.vm.guest_client import Power as GuestPower
+
+from com.vmware.vcenter_client import (
+    Datastore, Datacenter, Folder, ResourcePool)
+
+from com.vmware.content.library_client import Item
+from com.vmware.vcenter.vm_template_client import LibraryItems
+from com.vmware.vapi.std.errors_client import ServiceUnavailable
+
+
+__version__ = &#39;1.0.0&#39;
+
+STATE_TIMEOUT = 500
+
+
+class VsphereRobot:
+    &#34;&#34;&#34;
+    VsphereRobot is a wrapper of the Vsphere python SDK lib\n
+    This lib provide Robot Keywords to create and manipulate 
+    VMs in the Vcenter
+    &#34;&#34;&#34;
+    ROBOT_LIBRARY_VESION = __version__
+    ROBOT_LIBRARY_SCOPE = &#39;GLOBAL&#39;
+    _clients = {}
+    _client = None
+
+    @keyword(&#39;Connect to Vsphere ${session_name} to host ${hostname} with user ${username} and password ${password}&#39;)
+    def _connect_to_vsphere(self, session_name, hostname, username, password):
+        self.session = _get_unverified_session()
+        client = create_vsphere_client(
+            server=hostname, username=username, password=password, session=self.session)
+
+        self._clients[session_name] = client
+        self._client = client
+
+        logger.info(&#39;User ${username} connected in session ${session_name}&#39;)
+
+    @keyword(&#39;Switch to Session ${session_name}&#39;)
+    def switch_to_session(self, session_name):
+        &#34;&#34;&#34;
+        Switch to Session will use the session_name to change between
+        session\n
+        if the session dont exists will raise a exception
+        &#34;&#34;&#34;
+        if not session_name in self._clients:
+            raise Exception(
+                &#34;Vsphere session {} does not exists&#34;.format(session_name))
+        self._client = self._clients[session_name]
+
+    @keyword(&#39;List All Vms&#39;)
+    def list_vm(self):
+        &#34;&#34;&#34;
+        List all VMs inside the vCenter Server
+        &#34;&#34;&#34;
+        listOfVms = self._client.vcenter.VM.list()
+
+        logger.info(&#39;All Vms in the Vcenter: ${listOfVms}&#39;)
+
+        return listOfVms
+
+    @keyword(&#39;Get VM ${vm_name} Info&#39;)
+    def get_vm(self, vm_name):
+        &#34;&#34;&#34;
+        Get a single VM
+        &#34;&#34;&#34;
+        vms_name = set([vm_name])
+        vms = self._client.vcenter.VM.list(VM.FilterSpec(names=vms_name))
+
+        logger.info(&#39;VM info ${vms[0]}&#39;)
+        return vms[0]
+
+    @keyword(&#39;Get VM ${vm} BiosUUID&#39;)
+    def get_vm_uuid(self, vm):
+        &#34;&#34;&#34;
+        Get VM instance bios_uuid
+        &#34;&#34;&#34;
+        vm = self._client.vcenter.VM.get(vm.vm)
+
+        logger.info(&#39;VM identity ${vm.indentity}&#39;)
+        return vm.identity.bios_uuid
+
+    @keyword(&#39;Create VM ${vm_name} in Folder ${folder_name} Inside Datastore ${datastore_name}&#39;)
+    def create_vm(self, vm_name, folder_name, datastore_name):
+        &#34;&#34;&#34;
+        Will create a VM with default config
+        @return VM info
+        &#34;&#34;&#34;
+        datacenter_name = &#39;Datacenter&#39;
+        guest_os = &#34;CENTOS_7_64&#34;
+
+        placement_spec = self._get_placement_spec_for_resource_pool(
+            datacenter_name,
+            folder_name,
+            datastore_name)
+
+        vm_create_spec = VM.CreateSpec(name=vm_name,
+                                       guest_os=guest_os,
+                                       placement=placement_spec,
+                                       )
+
+        vm = self._client.vcenter.VM.create(vm_create_spec)
+
+        vm_info = self._client.vcenter.VM.get(vm)
+
+        logger.info(&#39;Created VM info: ${vm_info}&#39;)
+
+        return vm_info
+
+    @keyword(&#39;Power ON VM ${vm}&#39;)
+    def power_on(self, vm):
+        &#34;&#34;&#34;
+        Will Power ON the VM if the Power status is OFF
+        &#34;&#34;&#34;
+        status = self.vm_power_status(vm)
+        # Power on the vm if it is off and wait result
+        if status == (Power.Info(state=Power.State.POWERED_OFF)):
+            self._client.vcenter.vm.Power.start(vm.vm)
+            self._wait_for_power_operations_state(vm, True, STATE_TIMEOUT)
+        else:
+            return
+
+    @keyword(&#39;Power OFF VM ${vm}&#39;)
+    def power_off(self, vm):
+        &#34;&#34;&#34;
+        Will Power OFF the VM if the Power status is ON
+        &#34;&#34;&#34;
+        status = self.vm_power_status(vm)
+        # Power off the vm if it is on and wait result
+        if status == Power.Info(state=Power.State.POWERED_ON):
+            self._client.vcenter.vm.Power.stop(vm.vm)
+            self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+        else:
+            return
+
+    @keyword(&#39;Reboot VM ${vm}&#39;)
+    def reboot(self, vm):
+        &#34;&#34;&#34;
+        Checks the VM Power status and if is Power OFF
+        will Power ON the machine and reboot\n
+        Then will wait the machine Power state
+        &#34;&#34;&#34;
+
+        # power on the VM if necessary
+        self.power_on(vm)
+
+        # reboot the guest
+        self._client.vcenter.vm.guest.Power.reboot(vm.vm)
+
+        # wait vm power and guest power state
+        self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+
+        self._wait_for_guest_power_state(
+            vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+        self.wait_for_power_operations_state(vm, True, STATE_TIMEOUT)
+
+    @keyword(&#39;Get VM ${vm} Power Status&#39;)
+    def vm_power_status(self, vm):
+        &#34;&#34;&#34;
+        Get the VM Power status
+        @return: the vm Power status.
+        &#34;&#34;&#34;
+        status = self._client.vcenter.vm.Power.get(vm.vm)
+        logger.info(&#39;VM Power Status ${status}&#39;)
+        return status
+
+    @keyword(&#39;Delete VM ${vm}&#39;)
+    def delete_vm(self, vm):
+        &#34;&#34;&#34;
+        Check the VM Power status and if is Power OFF
+        deletes the VM
+
+        &#34;&#34;&#34;
+        if not vm:
+            raise Exception(
+                &#39;requires an existing, please create the vm first.&#39;)
+
+        state = self.vm_power_status(vm)
+        if state == Power.Info(state=Power.State.POWERED_ON):
+            self._client.vcenter.vm.Power.stop(vm.vm)
+        elif state == Power.Info(state=Power.State.SUSPENDED):
+            self._client.vcenter.vm.Power.start(vm.vm)
+            self._client.vcenter.vm.Power.stop(vm.vm)
+
+        # deleting vm
+        self._client.vcenter.VM.delete(vm.vm)
+
+    @keyword(&#39;Get Template ${name} ID&#39;)
+    def get_template_id_by_name(self, name):
+        &#34;&#34;&#34;
+        Uses the template name to get the template ID 
+        the template needs to be in the library item
+        @return: the template id.
+        &#34;&#34;&#34;
+        library_item_service = Item(self._client.session_svc._config)
+        find_spec = Item.FindSpec(name=name)
+        item_ids = library_item_service.find(find_spec)
+        item_id = item_ids[0] if item_ids else None
+
+        logger.info(&#39;Template ID: ${item_id}&#39;)
+        return item_id
+
+    @keyword(&#39;Create VM ${vm_name} From Template ${template_name} And Return IP&#39;)
+    def create_vm_from_template(self, template_name, vm_name):
+        &#34;&#34;&#34;
+        Create a VM from a template in the library item\n
+        Uses the template name to get the template ID\n
+        Build the deploy spec to pass in the deploy proccess\n
+        Power On the created VM and waits the VM Tool to be running\n
+        @return: the created vm ip address.
+        &#34;&#34;&#34;
+
+        datacenter_name = &#39;Datacenter_VF&#39;
+        vm_folder_name = &#39;POC_robot_VM_Attestation&#39;
+
+        vmtx_service = LibraryItems(self._client.session_svc._config)
+
+        template_id = self._get_item_id_by_name(template_name)
+
+        folder_id = self._get_folder(datacenter_name, vm_folder_name)
+
+        resource_pool_id = self._get_resource_pool(datacenter_name)
+
+        placement_spec = vmtx_service.DeployPlacementSpec(
+            folder=folder_id,
+            resource_pool=resource_pool_id)
+
+        deploy_spec = vmtx_service.DeploySpec(
+            name=vm_name,
+            placement=placement_spec,
+            powered_on=True,
+        )
+
+        vmtx_service.deploy(template_id, deploy_spec)
+
+        vm = self.get_vm(vm_name)
+
+        self._wait_for_guest_power_state(
+            vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+        # wait for guest info to be ready
+        self._wait_for_guest_info_ready(vm, STATE_TIMEOUT)
+
+        ip = self.get_vm_ip(vm)
+
+        return ip
+
+    @keyword(&#39;Get VM ${vm} IP&#39;)
+    def get_vm_ip(self, vm):
+        &#34;&#34;&#34;
+        Get the identity info from a VM
+        @return: the vm ip address.
+        &#34;&#34;&#34;
+        self.power_on(vm)
+
+        self._wait_for_guest_info_ready(vm, 700)
+
+        identity = self._client.vcenter.vm.guest.Identity.get(vm.vm)
+
+        logger.info(&#39;VM IP: ${identity.ip_address}&#39;)
+        return identity.ip_address
+
+    def _get_placement_spec_for_resource_pool(self,
+                                              datacenter_name,
+                                              vm_folder_name,
+                                              datastore_name):
+        &#34;&#34;&#34;
+        Create the vm placement spec with the datastore, resource pool and vm
+        folder
+        &#34;&#34;&#34;
+
+        resource_pool = self._get_resource_pool(datacenter_name)
+
+        folder = self._get_folder(datacenter_name, vm_folder_name)
+
+        datastore = self._get_datastore(datacenter_name, datastore_name)
+
+        placement_spec = VM.PlacementSpec(folder=folder,
+                                          resource_pool=resource_pool,
+                                          datastore=datastore)
+
+        return placement_spec
+
+    def _get_datastore(self, datacenter_name, datastore_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a datastore
+        Note: The method assumes that there is only one datastore and datacenter
+        with the mentioned names.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        filter_spec = Datastore.FilterSpec(names=set([datastore_name]),
+                                           datacenters=set([datacenter]))
+
+        datastore_summaries = self._client.vcenter.Datastore.list(filter_spec)
+        if len(datastore_summaries) &gt; 0:
+            datastore = datastore_summaries[0].datastore
+            return datastore
+        else:
+            return None
+
+    def _get_datacenter(self, datacenter_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a datacenter
+        Note: The method assumes only one datacenter with the mentioned name.
+        &#34;&#34;&#34;
+
+        filter_spec = Datacenter.FilterSpec(names=set([datacenter_name]))
+
+        datacenter_summaries = self._client.vcenter.Datacenter.list(
+            filter_spec)
+        if len(datacenter_summaries) &gt; 0:
+            datacenter = datacenter_summaries[0].datacenter
+            return datacenter
+        else:
+            return None
+
+    def _get_folder(self, datacenter_name, folder_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a folder
+        Note: The method assumes that there is only one folder and datacenter
+        with the mentioned names.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        filter_spec = Folder.FilterSpec(type=Folder.Type.VIRTUAL_MACHINE,
+                                        names=set([folder_name]),
+                                        datacenters=set([datacenter]))
+
+        folder_summaries = self._client.vcenter.Folder.list(filter_spec)
+        if len(folder_summaries) &gt; 0:
+            folder = folder_summaries[0].folder
+            return folder
+        else:
+            return None
+
+    def _get_resource_pool(self, datacenter_name, resource_pool_name=None):
+        &#34;&#34;&#34;
+        Returns the identifier of the resource pool with the given name or the
+        first resource pool in the datacenter if the name is not provided.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        names = set([resource_pool_name]) if resource_pool_name else None
+        filter_spec = ResourcePool.FilterSpec(datacenters=set([datacenter]),
+                                              names=names)
+
+        resource_pool_summaries = self._client.vcenter.ResourcePool.list(
+            filter_spec)
+        if len(resource_pool_summaries) &gt; 0:
+            resource_pool = resource_pool_summaries[0].resource_pool
+            return resource_pool
+        else:
+            return None
+
+    def _wait_for_power_operations_state(self, vm, desiredState, timeout):
+        &#34;&#34;&#34;
+        Waits for the desired soft power operations state, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+            time.sleep(1)
+            curState = self._client.vcenter.vm.guest.Power.get(
+                vm.vm).operations_ready
+            if desiredState == curState:
+                break
+        if desiredState != curState:
+            raise Exception(&#39;Timed out waiting for guest to reach desired &#39;
+                            &#39; operations ready state&#39;)
+        else:
+            return
+
+    def _wait_for_guest_power_state(self, vm, desiredState, timeout):
+        &#34;&#34;&#34;
+        Waits for the guest to reach the desired power state, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+            time.sleep(1)
+            curState = self._client.vcenter.vm.guest.Power.get(vm.vm).state
+            if desiredState == curState:
+                break
+        if desiredState != curState:
+            raise Exception(
+                &#39;Timed out waiting for guest to reach desired power state&#39;)
+        else:
+            return
+
+    def _wait_for_guest_info_ready(self, vm, timeout):
+        &#34;&#34;&#34;
+        Waits for the Tools info to be ready, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+
+            time.sleep(1)
+            try:
+                self._client.vcenter.vm.guest.Identity.get(vm.vm)
+                break
+            except ServiceUnavailable as e:
+                pass
+            except Exception as e:
+                raise e
+        if time.time() &gt;= timeout:
+            raise Exception(&#39;Timed out waiting for guest info to be available.\n&#39;
+                            &#39;Be sure the VM has VMware Tools.&#39;)
+        else:
+            return
+
+
+def _get_unverified_session():
+    &#34;&#34;&#34;
+    Get a requests session with cert verification disabled.
+    Also disable the insecure warnings message.
+    Note this is not recommended in production code.
+    @return: a requests session with verification disabled.
+    &#34;&#34;&#34;
+    session = requests.session()
+    session.verify = False
+    requests.packages.urllib3.disable_warnings()
+    return session</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="VsphereRobot.VsphereRobot"><code class="flex name class">
+<span>class <span class="ident">VsphereRobot</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>VsphereRobot is a wrapper of the Vsphere python SDK lib</p>
+<p>This lib provide Robot Keywords to create and manipulate
+VMs in the Vcenter</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VsphereRobot:
+    &#34;&#34;&#34;
+    VsphereRobot is a wrapper of the Vsphere python SDK lib\n
+    This lib provide Robot Keywords to create and manipulate 
+    VMs in the Vcenter
+    &#34;&#34;&#34;
+    ROBOT_LIBRARY_VESION = __version__
+    ROBOT_LIBRARY_SCOPE = &#39;GLOBAL&#39;
+    _clients = {}
+    _client = None
+
+    @keyword(&#39;Connect to Vsphere ${session_name} to host ${hostname} with user ${username} and password ${password}&#39;)
+    def _connect_to_vsphere(self, session_name, hostname, username, password):
+        self.session = _get_unverified_session()
+        client = create_vsphere_client(
+            server=hostname, username=username, password=password, session=self.session)
+
+        self._clients[session_name] = client
+        self._client = client
+
+        logger.info(&#39;User ${username} connected in session ${session_name}&#39;)
+
+    @keyword(&#39;Switch to Session ${session_name}&#39;)
+    def switch_to_session(self, session_name):
+        &#34;&#34;&#34;
+        Switch to Session will use the session_name to change between
+        session\n
+        if the session dont exists will raise a exception
+        &#34;&#34;&#34;
+        if not session_name in self._clients:
+            raise Exception(
+                &#34;Vsphere session {} does not exists&#34;.format(session_name))
+        self._client = self._clients[session_name]
+
+    @keyword(&#39;List All Vms&#39;)
+    def list_vm(self):
+        &#34;&#34;&#34;
+        List all VMs inside the vCenter Server
+        &#34;&#34;&#34;
+        listOfVms = self._client.vcenter.VM.list()
+
+        logger.info(&#39;All Vms in the Vcenter: ${listOfVms}&#39;)
+
+        return listOfVms
+
+    @keyword(&#39;Get VM ${vm_name} Info&#39;)
+    def get_vm(self, vm_name):
+        &#34;&#34;&#34;
+        Get a single VM
+        &#34;&#34;&#34;
+        vms_name = set([vm_name])
+        vms = self._client.vcenter.VM.list(VM.FilterSpec(names=vms_name))
+
+        logger.info(&#39;VM info ${vms[0]}&#39;)
+        return vms[0]
+
+    @keyword(&#39;Get VM ${vm} BiosUUID&#39;)
+    def get_vm_uuid(self, vm):
+        &#34;&#34;&#34;
+        Get VM instance bios_uuid
+        &#34;&#34;&#34;
+        vm = self._client.vcenter.VM.get(vm.vm)
+
+        logger.info(&#39;VM identity ${vm.indentity}&#39;)
+        return vm.identity.bios_uuid
+
+    @keyword(&#39;Create VM ${vm_name} in Folder ${folder_name} Inside Datastore ${datastore_name}&#39;)
+    def create_vm(self, vm_name, folder_name, datastore_name):
+        &#34;&#34;&#34;
+        Will create a VM with default config
+        @return VM info
+        &#34;&#34;&#34;
+        datacenter_name = &#39;Datacenter&#39;
+        guest_os = &#34;CENTOS_7_64&#34;
+
+        placement_spec = self._get_placement_spec_for_resource_pool(
+            datacenter_name,
+            folder_name,
+            datastore_name)
+
+        vm_create_spec = VM.CreateSpec(name=vm_name,
+                                       guest_os=guest_os,
+                                       placement=placement_spec,
+                                       )
+
+        vm = self._client.vcenter.VM.create(vm_create_spec)
+
+        vm_info = self._client.vcenter.VM.get(vm)
+
+        logger.info(&#39;Created VM info: ${vm_info}&#39;)
+
+        return vm_info
+
+    @keyword(&#39;Power ON VM ${vm}&#39;)
+    def power_on(self, vm):
+        &#34;&#34;&#34;
+        Will Power ON the VM if the Power status is OFF
+        &#34;&#34;&#34;
+        status = self.vm_power_status(vm)
+        # Power on the vm if it is off and wait result
+        if status == (Power.Info(state=Power.State.POWERED_OFF)):
+            self._client.vcenter.vm.Power.start(vm.vm)
+            self._wait_for_power_operations_state(vm, True, STATE_TIMEOUT)
+        else:
+            return
+
+    @keyword(&#39;Power OFF VM ${vm}&#39;)
+    def power_off(self, vm):
+        &#34;&#34;&#34;
+        Will Power OFF the VM if the Power status is ON
+        &#34;&#34;&#34;
+        status = self.vm_power_status(vm)
+        # Power off the vm if it is on and wait result
+        if status == Power.Info(state=Power.State.POWERED_ON):
+            self._client.vcenter.vm.Power.stop(vm.vm)
+            self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+        else:
+            return
+
+    @keyword(&#39;Reboot VM ${vm}&#39;)
+    def reboot(self, vm):
+        &#34;&#34;&#34;
+        Checks the VM Power status and if is Power OFF
+        will Power ON the machine and reboot\n
+        Then will wait the machine Power state
+        &#34;&#34;&#34;
+
+        # power on the VM if necessary
+        self.power_on(vm)
+
+        # reboot the guest
+        self._client.vcenter.vm.guest.Power.reboot(vm.vm)
+
+        # wait vm power and guest power state
+        self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+
+        self._wait_for_guest_power_state(
+            vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+        self.wait_for_power_operations_state(vm, True, STATE_TIMEOUT)
+
+    @keyword(&#39;Get VM ${vm} Power Status&#39;)
+    def vm_power_status(self, vm):
+        &#34;&#34;&#34;
+        Get the VM Power status
+        @return: the vm Power status.
+        &#34;&#34;&#34;
+        status = self._client.vcenter.vm.Power.get(vm.vm)
+        logger.info(&#39;VM Power Status ${status}&#39;)
+        return status
+
+    @keyword(&#39;Delete VM ${vm}&#39;)
+    def delete_vm(self, vm):
+        &#34;&#34;&#34;
+        Check the VM Power status and if is Power OFF
+        deletes the VM
+
+        &#34;&#34;&#34;
+        if not vm:
+            raise Exception(
+                &#39;requires an existing, please create the vm first.&#39;)
+
+        state = self.vm_power_status(vm)
+        if state == Power.Info(state=Power.State.POWERED_ON):
+            self._client.vcenter.vm.Power.stop(vm.vm)
+        elif state == Power.Info(state=Power.State.SUSPENDED):
+            self._client.vcenter.vm.Power.start(vm.vm)
+            self._client.vcenter.vm.Power.stop(vm.vm)
+
+        # deleting vm
+        self._client.vcenter.VM.delete(vm.vm)
+
+    @keyword(&#39;Get Template ${name} ID&#39;)
+    def get_template_id_by_name(self, name):
+        &#34;&#34;&#34;
+        Uses the template name to get the template ID 
+        the template needs to be in the library item
+        @return: the template id.
+        &#34;&#34;&#34;
+        library_item_service = Item(self._client.session_svc._config)
+        find_spec = Item.FindSpec(name=name)
+        item_ids = library_item_service.find(find_spec)
+        item_id = item_ids[0] if item_ids else None
+
+        logger.info(&#39;Template ID: ${item_id}&#39;)
+        return item_id
+
+    @keyword(&#39;Create VM ${vm_name} From Template ${template_name} And Return IP&#39;)
+    def create_vm_from_template(self, template_name, vm_name):
+        &#34;&#34;&#34;
+        Create a VM from a template in the library item\n
+        Uses the template name to get the template ID\n
+        Build the deploy spec to pass in the deploy proccess\n
+        Power On the created VM and waits the VM Tool to be running\n
+        @return: the created vm ip address.
+        &#34;&#34;&#34;
+
+        datacenter_name = &#39;Datacenter_VF&#39;
+        vm_folder_name = &#39;POC_robot_VM_Attestation&#39;
+
+        vmtx_service = LibraryItems(self._client.session_svc._config)
+
+        template_id = self._get_item_id_by_name(template_name)
+
+        folder_id = self._get_folder(datacenter_name, vm_folder_name)
+
+        resource_pool_id = self._get_resource_pool(datacenter_name)
+
+        placement_spec = vmtx_service.DeployPlacementSpec(
+            folder=folder_id,
+            resource_pool=resource_pool_id)
+
+        deploy_spec = vmtx_service.DeploySpec(
+            name=vm_name,
+            placement=placement_spec,
+            powered_on=True,
+        )
+
+        vmtx_service.deploy(template_id, deploy_spec)
+
+        vm = self.get_vm(vm_name)
+
+        self._wait_for_guest_power_state(
+            vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+        # wait for guest info to be ready
+        self._wait_for_guest_info_ready(vm, STATE_TIMEOUT)
+
+        ip = self.get_vm_ip(vm)
+
+        return ip
+
+    @keyword(&#39;Get VM ${vm} IP&#39;)
+    def get_vm_ip(self, vm):
+        &#34;&#34;&#34;
+        Get the identity info from a VM
+        @return: the vm ip address.
+        &#34;&#34;&#34;
+        self.power_on(vm)
+
+        self._wait_for_guest_info_ready(vm, 700)
+
+        identity = self._client.vcenter.vm.guest.Identity.get(vm.vm)
+
+        logger.info(&#39;VM IP: ${identity.ip_address}&#39;)
+        return identity.ip_address
+
+    def _get_placement_spec_for_resource_pool(self,
+                                              datacenter_name,
+                                              vm_folder_name,
+                                              datastore_name):
+        &#34;&#34;&#34;
+        Create the vm placement spec with the datastore, resource pool and vm
+        folder
+        &#34;&#34;&#34;
+
+        resource_pool = self._get_resource_pool(datacenter_name)
+
+        folder = self._get_folder(datacenter_name, vm_folder_name)
+
+        datastore = self._get_datastore(datacenter_name, datastore_name)
+
+        placement_spec = VM.PlacementSpec(folder=folder,
+                                          resource_pool=resource_pool,
+                                          datastore=datastore)
+
+        return placement_spec
+
+    def _get_datastore(self, datacenter_name, datastore_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a datastore
+        Note: The method assumes that there is only one datastore and datacenter
+        with the mentioned names.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        filter_spec = Datastore.FilterSpec(names=set([datastore_name]),
+                                           datacenters=set([datacenter]))
+
+        datastore_summaries = self._client.vcenter.Datastore.list(filter_spec)
+        if len(datastore_summaries) &gt; 0:
+            datastore = datastore_summaries[0].datastore
+            return datastore
+        else:
+            return None
+
+    def _get_datacenter(self, datacenter_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a datacenter
+        Note: The method assumes only one datacenter with the mentioned name.
+        &#34;&#34;&#34;
+
+        filter_spec = Datacenter.FilterSpec(names=set([datacenter_name]))
+
+        datacenter_summaries = self._client.vcenter.Datacenter.list(
+            filter_spec)
+        if len(datacenter_summaries) &gt; 0:
+            datacenter = datacenter_summaries[0].datacenter
+            return datacenter
+        else:
+            return None
+
+    def _get_folder(self, datacenter_name, folder_name):
+        &#34;&#34;&#34;
+        Returns the identifier of a folder
+        Note: The method assumes that there is only one folder and datacenter
+        with the mentioned names.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        filter_spec = Folder.FilterSpec(type=Folder.Type.VIRTUAL_MACHINE,
+                                        names=set([folder_name]),
+                                        datacenters=set([datacenter]))
+
+        folder_summaries = self._client.vcenter.Folder.list(filter_spec)
+        if len(folder_summaries) &gt; 0:
+            folder = folder_summaries[0].folder
+            return folder
+        else:
+            return None
+
+    def _get_resource_pool(self, datacenter_name, resource_pool_name=None):
+        &#34;&#34;&#34;
+        Returns the identifier of the resource pool with the given name or the
+        first resource pool in the datacenter if the name is not provided.
+        &#34;&#34;&#34;
+        datacenter = self._get_datacenter(datacenter_name)
+        if not datacenter:
+            return None
+
+        names = set([resource_pool_name]) if resource_pool_name else None
+        filter_spec = ResourcePool.FilterSpec(datacenters=set([datacenter]),
+                                              names=names)
+
+        resource_pool_summaries = self._client.vcenter.ResourcePool.list(
+            filter_spec)
+        if len(resource_pool_summaries) &gt; 0:
+            resource_pool = resource_pool_summaries[0].resource_pool
+            return resource_pool
+        else:
+            return None
+
+    def _wait_for_power_operations_state(self, vm, desiredState, timeout):
+        &#34;&#34;&#34;
+        Waits for the desired soft power operations state, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+            time.sleep(1)
+            curState = self._client.vcenter.vm.guest.Power.get(
+                vm.vm).operations_ready
+            if desiredState == curState:
+                break
+        if desiredState != curState:
+            raise Exception(&#39;Timed out waiting for guest to reach desired &#39;
+                            &#39; operations ready state&#39;)
+        else:
+            return
+
+    def _wait_for_guest_power_state(self, vm, desiredState, timeout):
+        &#34;&#34;&#34;
+        Waits for the guest to reach the desired power state, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+            time.sleep(1)
+            curState = self._client.vcenter.vm.guest.Power.get(vm.vm).state
+            if desiredState == curState:
+                break
+        if desiredState != curState:
+            raise Exception(
+                &#39;Timed out waiting for guest to reach desired power state&#39;)
+        else:
+            return
+
+    def _wait_for_guest_info_ready(self, vm, timeout):
+        &#34;&#34;&#34;
+        Waits for the Tools info to be ready, or times out.
+        &#34;&#34;&#34;
+        start = time.time()
+        timeout = start + timeout
+        while timeout &gt; time.time():
+
+            time.sleep(1)
+            try:
+                self._client.vcenter.vm.guest.Identity.get(vm.vm)
+                break
+            except ServiceUnavailable as e:
+                pass
+            except Exception as e:
+                raise e
+        if time.time() &gt;= timeout:
+            raise Exception(&#39;Timed out waiting for guest info to be available.\n&#39;
+                            &#39;Be sure the VM has VMware Tools.&#39;)
+        else:
+            return</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="VsphereRobot.VsphereRobot.ROBOT_LIBRARY_SCOPE"><code class="name">var <span class="ident">ROBOT_LIBRARY_SCOPE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.ROBOT_LIBRARY_VESION"><code class="name">var <span class="ident">ROBOT_LIBRARY_VESION</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="VsphereRobot.VsphereRobot.create_vm"><code class="name flex">
+<span>def <span class="ident">create_vm</span></span>(<span>self, vm_name, folder_name, datastore_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Will create a VM with default config
+@return VM info</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Create VM ${vm_name} in Folder ${folder_name} Inside Datastore ${datastore_name}&#39;)
+def create_vm(self, vm_name, folder_name, datastore_name):
+    &#34;&#34;&#34;
+    Will create a VM with default config
+    @return VM info
+    &#34;&#34;&#34;
+    datacenter_name = &#39;Datacenter&#39;
+    guest_os = &#34;CENTOS_7_64&#34;
+
+    placement_spec = self._get_placement_spec_for_resource_pool(
+        datacenter_name,
+        folder_name,
+        datastore_name)
+
+    vm_create_spec = VM.CreateSpec(name=vm_name,
+                                   guest_os=guest_os,
+                                   placement=placement_spec,
+                                   )
+
+    vm = self._client.vcenter.VM.create(vm_create_spec)
+
+    vm_info = self._client.vcenter.VM.get(vm)
+
+    logger.info(&#39;Created VM info: ${vm_info}&#39;)
+
+    return vm_info</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.create_vm_from_template"><code class="name flex">
+<span>def <span class="ident">create_vm_from_template</span></span>(<span>self, template_name, vm_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a VM from a template in the library item</p>
+<p>Uses the template name to get the template ID</p>
+<p>Build the deploy spec to pass in the deploy proccess</p>
+<p>Power On the created VM and waits the VM Tool to be running</p>
+<p>@return: the created vm ip address.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Create VM ${vm_name} From Template ${template_name} And Return IP&#39;)
+def create_vm_from_template(self, template_name, vm_name):
+    &#34;&#34;&#34;
+    Create a VM from a template in the library item\n
+    Uses the template name to get the template ID\n
+    Build the deploy spec to pass in the deploy proccess\n
+    Power On the created VM and waits the VM Tool to be running\n
+    @return: the created vm ip address.
+    &#34;&#34;&#34;
+
+    datacenter_name = &#39;Datacenter_VF&#39;
+    vm_folder_name = &#39;POC_robot_VM_Attestation&#39;
+
+    vmtx_service = LibraryItems(self._client.session_svc._config)
+
+    template_id = self._get_item_id_by_name(template_name)
+
+    folder_id = self._get_folder(datacenter_name, vm_folder_name)
+
+    resource_pool_id = self._get_resource_pool(datacenter_name)
+
+    placement_spec = vmtx_service.DeployPlacementSpec(
+        folder=folder_id,
+        resource_pool=resource_pool_id)
+
+    deploy_spec = vmtx_service.DeploySpec(
+        name=vm_name,
+        placement=placement_spec,
+        powered_on=True,
+    )
+
+    vmtx_service.deploy(template_id, deploy_spec)
+
+    vm = self.get_vm(vm_name)
+
+    self._wait_for_guest_power_state(
+        vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+    # wait for guest info to be ready
+    self._wait_for_guest_info_ready(vm, STATE_TIMEOUT)
+
+    ip = self.get_vm_ip(vm)
+
+    return ip</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.delete_vm"><code class="name flex">
+<span>def <span class="ident">delete_vm</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check the VM Power status and if is Power OFF
+deletes the VM</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Delete VM ${vm}&#39;)
+def delete_vm(self, vm):
+    &#34;&#34;&#34;
+    Check the VM Power status and if is Power OFF
+    deletes the VM
+
+    &#34;&#34;&#34;
+    if not vm:
+        raise Exception(
+            &#39;requires an existing, please create the vm first.&#39;)
+
+    state = self.vm_power_status(vm)
+    if state == Power.Info(state=Power.State.POWERED_ON):
+        self._client.vcenter.vm.Power.stop(vm.vm)
+    elif state == Power.Info(state=Power.State.SUSPENDED):
+        self._client.vcenter.vm.Power.start(vm.vm)
+        self._client.vcenter.vm.Power.stop(vm.vm)
+
+    # deleting vm
+    self._client.vcenter.VM.delete(vm.vm)</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.get_template_id_by_name"><code class="name flex">
+<span>def <span class="ident">get_template_id_by_name</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Uses the template name to get the template ID
+the template needs to be in the library item
+@return: the template id.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Get Template ${name} ID&#39;)
+def get_template_id_by_name(self, name):
+    &#34;&#34;&#34;
+    Uses the template name to get the template ID 
+    the template needs to be in the library item
+    @return: the template id.
+    &#34;&#34;&#34;
+    library_item_service = Item(self._client.session_svc._config)
+    find_spec = Item.FindSpec(name=name)
+    item_ids = library_item_service.find(find_spec)
+    item_id = item_ids[0] if item_ids else None
+
+    logger.info(&#39;Template ID: ${item_id}&#39;)
+    return item_id</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.get_vm"><code class="name flex">
+<span>def <span class="ident">get_vm</span></span>(<span>self, vm_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a single VM</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Get VM ${vm_name} Info&#39;)
+def get_vm(self, vm_name):
+    &#34;&#34;&#34;
+    Get a single VM
+    &#34;&#34;&#34;
+    vms_name = set([vm_name])
+    vms = self._client.vcenter.VM.list(VM.FilterSpec(names=vms_name))
+
+    logger.info(&#39;VM info ${vms[0]}&#39;)
+    return vms[0]</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.get_vm_ip"><code class="name flex">
+<span>def <span class="ident">get_vm_ip</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the identity info from a VM
+@return: the vm ip address.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Get VM ${vm} IP&#39;)
+def get_vm_ip(self, vm):
+    &#34;&#34;&#34;
+    Get the identity info from a VM
+    @return: the vm ip address.
+    &#34;&#34;&#34;
+    self.power_on(vm)
+
+    self._wait_for_guest_info_ready(vm, 700)
+
+    identity = self._client.vcenter.vm.guest.Identity.get(vm.vm)
+
+    logger.info(&#39;VM IP: ${identity.ip_address}&#39;)
+    return identity.ip_address</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.get_vm_uuid"><code class="name flex">
+<span>def <span class="ident">get_vm_uuid</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get VM instance bios_uuid</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Get VM ${vm} BiosUUID&#39;)
+def get_vm_uuid(self, vm):
+    &#34;&#34;&#34;
+    Get VM instance bios_uuid
+    &#34;&#34;&#34;
+    vm = self._client.vcenter.VM.get(vm.vm)
+
+    logger.info(&#39;VM identity ${vm.indentity}&#39;)
+    return vm.identity.bios_uuid</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.list_vm"><code class="name flex">
+<span>def <span class="ident">list_vm</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List all VMs inside the vCenter Server</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;List All Vms&#39;)
+def list_vm(self):
+    &#34;&#34;&#34;
+    List all VMs inside the vCenter Server
+    &#34;&#34;&#34;
+    listOfVms = self._client.vcenter.VM.list()
+
+    logger.info(&#39;All Vms in the Vcenter: ${listOfVms}&#39;)
+
+    return listOfVms</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.power_off"><code class="name flex">
+<span>def <span class="ident">power_off</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Will Power OFF the VM if the Power status is ON</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Power OFF VM ${vm}&#39;)
+def power_off(self, vm):
+    &#34;&#34;&#34;
+    Will Power OFF the VM if the Power status is ON
+    &#34;&#34;&#34;
+    status = self.vm_power_status(vm)
+    # Power off the vm if it is on and wait result
+    if status == Power.Info(state=Power.State.POWERED_ON):
+        self._client.vcenter.vm.Power.stop(vm.vm)
+        self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.power_on"><code class="name flex">
+<span>def <span class="ident">power_on</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Will Power ON the VM if the Power status is OFF</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Power ON VM ${vm}&#39;)
+def power_on(self, vm):
+    &#34;&#34;&#34;
+    Will Power ON the VM if the Power status is OFF
+    &#34;&#34;&#34;
+    status = self.vm_power_status(vm)
+    # Power on the vm if it is off and wait result
+    if status == (Power.Info(state=Power.State.POWERED_OFF)):
+        self._client.vcenter.vm.Power.start(vm.vm)
+        self._wait_for_power_operations_state(vm, True, STATE_TIMEOUT)
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.reboot"><code class="name flex">
+<span>def <span class="ident">reboot</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks the VM Power status and if is Power OFF
+will Power ON the machine and reboot</p>
+<p>Then will wait the machine Power state</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Reboot VM ${vm}&#39;)
+def reboot(self, vm):
+    &#34;&#34;&#34;
+    Checks the VM Power status and if is Power OFF
+    will Power ON the machine and reboot\n
+    Then will wait the machine Power state
+    &#34;&#34;&#34;
+
+    # power on the VM if necessary
+    self.power_on(vm)
+
+    # reboot the guest
+    self._client.vcenter.vm.guest.Power.reboot(vm.vm)
+
+    # wait vm power and guest power state
+    self._wait_for_power_operations_state(vm, False, STATE_TIMEOUT)
+
+    self._wait_for_guest_power_state(
+        vm, GuestPower.State.RUNNING, STATE_TIMEOUT)
+
+    self.wait_for_power_operations_state(vm, True, STATE_TIMEOUT)</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.switch_to_session"><code class="name flex">
+<span>def <span class="ident">switch_to_session</span></span>(<span>self, session_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Switch to Session will use the session_name to change between
+session</p>
+<p>if the session dont exists will raise a exception</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Switch to Session ${session_name}&#39;)
+def switch_to_session(self, session_name):
+    &#34;&#34;&#34;
+    Switch to Session will use the session_name to change between
+    session\n
+    if the session dont exists will raise a exception
+    &#34;&#34;&#34;
+    if not session_name in self._clients:
+        raise Exception(
+            &#34;Vsphere session {} does not exists&#34;.format(session_name))
+    self._client = self._clients[session_name]</code></pre>
+</details>
+</dd>
+<dt id="VsphereRobot.VsphereRobot.vm_power_status"><code class="name flex">
+<span>def <span class="ident">vm_power_status</span></span>(<span>self, vm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the VM Power status
+@return: the vm Power status.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@keyword(&#39;Get VM ${vm} Power Status&#39;)
+def vm_power_status(self, vm):
+    &#34;&#34;&#34;
+    Get the VM Power status
+    @return: the vm Power status.
+    &#34;&#34;&#34;
+    status = self._client.vcenter.vm.Power.get(vm.vm)
+    logger.info(&#39;VM Power Status ${status}&#39;)
+    return status</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="VsphereRobot.VsphereRobot" href="#VsphereRobot.VsphereRobot">VsphereRobot</a></code></h4>
+<ul class="">
+<li><code><a title="VsphereRobot.VsphereRobot.ROBOT_LIBRARY_SCOPE" href="#VsphereRobot.VsphereRobot.ROBOT_LIBRARY_SCOPE">ROBOT_LIBRARY_SCOPE</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.ROBOT_LIBRARY_VESION" href="#VsphereRobot.VsphereRobot.ROBOT_LIBRARY_VESION">ROBOT_LIBRARY_VESION</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.create_vm" href="#VsphereRobot.VsphereRobot.create_vm">create_vm</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.create_vm_from_template" href="#VsphereRobot.VsphereRobot.create_vm_from_template">create_vm_from_template</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.delete_vm" href="#VsphereRobot.VsphereRobot.delete_vm">delete_vm</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.get_template_id_by_name" href="#VsphereRobot.VsphereRobot.get_template_id_by_name">get_template_id_by_name</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.get_vm" href="#VsphereRobot.VsphereRobot.get_vm">get_vm</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.get_vm_ip" href="#VsphereRobot.VsphereRobot.get_vm_ip">get_vm_ip</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.get_vm_uuid" href="#VsphereRobot.VsphereRobot.get_vm_uuid">get_vm_uuid</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.list_vm" href="#VsphereRobot.VsphereRobot.list_vm">list_vm</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.power_off" href="#VsphereRobot.VsphereRobot.power_off">power_off</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.power_on" href="#VsphereRobot.VsphereRobot.power_on">power_on</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.reboot" href="#VsphereRobot.VsphereRobot.reboot">reboot</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.switch_to_session" href="#VsphereRobot.VsphereRobot.switch_to_session">switch_to_session</a></code></li>
+<li><code><a title="VsphereRobot.VsphereRobot.vm_power_status" href="#VsphereRobot.VsphereRobot.vm_power_status">vm_power_status</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
